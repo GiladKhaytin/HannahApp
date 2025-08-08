@@ -1,11 +1,12 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
   return (
     <Tabs screenOptions={{headerShown: false, tabBarActiveTintColor: 'blue', tabBarStyle: { backgroundColor: '#fff'}}}>
-        <Tabs.Screen name="index" options={{title: 'Home', tabBarIcon: ({ color }) => (<FontAwesome size={28} name="home" color={color} />),}}/>
-        <Tabs.Screen name="hannah" options={{title: 'DigitalHannah', tabBarIcon: ({ color }) => (<FontAwesome size={28} name="book" color={color} />),}}/>
+        <Tabs.Screen name="index" options={{title: 'דף הבית', tabBarIcon: ({ color }) => (<FontAwesome size={28} name="home" color={color} />),}}/>
+        <Tabs.Screen name="hannah" options={{title: 'אכיפת דיגום', tabBarIcon: ({ color }) => (<FontAwesome5 name="tshirt" size={24} color={color}/>),}}/>
     </Tabs>
   );
 }
