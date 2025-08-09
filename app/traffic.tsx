@@ -1,12 +1,22 @@
 import Hannah from '@/components/Hannah';
-import disciplinaryRegulations from '@/data/traffic.json';
+import trafficRegulations from '@/data/traffic.json';
+import { useFocusEffect } from '@react-navigation/native';
+import * as Analytics from 'expo-firebase-analytics';
 import React from 'react';
 import { View } from 'react-native';
 
-export default function Disciplinary() {
+export default function Traffic() {
+  useFocusEffect(
+    React.useCallback(() => {
+      Analytics.logEvent('traffic_screen_opened', {
+        timestamp: new Date().toISOString(),
+      });
+    }, [])
+  );
+
   return (
     <View style={{ flex: 1 }}>
-      <Hannah data={disciplinaryRegulations} />
+      <Hannah data={trafficRegulations} />
     </View>
   );
 }

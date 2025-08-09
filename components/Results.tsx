@@ -1,5 +1,6 @@
 import Popup from '@/components/PopUp';
 import { regulationSettings } from '@/types/regulationSettings';
+import * as Analytics from 'expo-firebase-analytics';
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -16,13 +17,23 @@ const Results: React.FC<Props> = ({ query, data }) => {
     item.description?.toLowerCase().includes(query.toLowerCase())
   );
 
+    const handlePress = async (item: regulationSettings) => {
+    Analytics.logEvent('popup_opened', {
+      title: item.title || '',
+      symbol: item.symbol || '',
+      timestamp: new Date().toISOString(),
+    });
+
+    setSelectedItem(item);
+  };
+
   return (
     <>
       <FlatList
         data={filtered}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => setSelectedItem(item)}>
+          <TouchableOpacity onPress={() => handlePress(item)}>
             <View style={styles.item}>
               <Text style={styles.title}>{item.title}</Text>
               <Text>{item.description}</Text>

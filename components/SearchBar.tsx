@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
 type Props = {
-  data: regulationSettings[];
+  data: regulationSettings;
 };
 
 export default function SearchBar({ data }: Props) {

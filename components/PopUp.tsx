@@ -5,7 +5,7 @@ import RNModal from 'react-native-modal';
 
 type Props = {
   visible: string;
-  item: regulationSettings[];
+  item: regulationSettings;
 };
 
 const Popup: React.FC<Props> = ({ visible, onClose, item }) => {

@@ -4,7 +4,7 @@ import { regulationSettings } from '@/types/interface';
 import { ImageBackground, ScrollView, StyleSheet } from 'react-native';
 
 type Props = {
-  data: regulationSettings[];
+  data: regulationSettings;
 };
 
 export default function Hannah({ data }: Props) {
