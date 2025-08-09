@@ -10,17 +10,11 @@ type Props = {
 
 const Results: React.FC<Props> = ({ query, data }) => {
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const filtered = data.filter((item) =>
     item.title?.toLowerCase().includes(query.toLowerCase()) ||
     item.description?.toLowerCase().includes(query.toLowerCase())
   );
-
-  const handlePress = (item: any) => {
-    setSelectedItem(item);
-    setModalVisible(true);
-  };
 
   return (
     <>
@@ -28,19 +22,17 @@ const Results: React.FC<Props> = ({ query, data }) => {
         data={filtered}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handlePress(item)}>
+          <TouchableOpacity onPress={() => setSelectedItem(item)}>
             <View style={styles.item}>
               <Text style={styles.title}>{item.title}</Text>
-              <Text numberOfLines={2} ellipsizeMode="tail">
-                {item.description}
-              </Text>
+              <Text>{item.description}</Text>
             </View>
           </TouchableOpacity>
         )}
       />
       <Popup
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
+        visible={selectedItem}
+        onClose={() => setSelectedItem(null)}
         item={selectedItem}
       />
     </>
@@ -55,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     direction: 'rtl',
     borderRadius: 15,
-    margin: 1,
+    margin: 4,
   },
   title: {
     fontWeight: 'bold',

@@ -1,17 +1,20 @@
+import Results from '@/components/Results';
+import { regulationSettings } from '@/types/interface';
 import { FontAwesome } from '@expo/vector-icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-
 type Props = {
-  query: string;
-  setQuery: (text: string) => void;
+  data: regulationSettings[];
 };
 
-const Searchbar: React.FC<Props> = ({ query, setQuery }) => {
+export default function SearchBar({ data }: Props) {
+  const [query, setQuery] = useState<string>('');
+
   return (
     <View style={styles.container}>
-      <View style={styles.wrapper}>
+      <View style={styles.searchWrapper}>
+        <FontAwesome name="search" size={20} color="#999" style={styles.icon} />
         <TextInput
           style={styles.searchBar}
           placeholder="איזו תקנה בא לך למצוא?"
@@ -19,7 +22,9 @@ const Searchbar: React.FC<Props> = ({ query, setQuery }) => {
           value={query}
           onChangeText={setQuery}
         />
-        <FontAwesome name="search" size={20} color="#999" />
+      </View>
+      <View style={styles.resultsWrapper}>
+        <Results query={query} data={data} />
       </View>
     </View>
   );
@@ -27,31 +32,34 @@ const Searchbar: React.FC<Props> = ({ query, setQuery }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    paddingHorizontal: 20,
     marginTop: 40,
+    width: '100%',
   },
-  wrapper: {
+  searchWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 5,
     borderRadius: 20,
-    width: '100%',
-    height: 60,
     borderWidth: 1,
+    borderColor: '#ddd',
+    height: 50,
     paddingHorizontal: 15,
-    marginBottom: 15,
+  },
+  icon: {
+    marginRight: 10,
   },
   searchBar: {
     flex: 1,
     fontSize: 16,
-    paddingVertical: 10,
-    paddingRight: 10,
+    color: '#333',
+  },
+  resultsWrapper: {
+    marginTop: 10,
   },
 });
-
-export default Searchbar;
