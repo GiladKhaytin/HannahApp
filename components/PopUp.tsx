@@ -1,11 +1,11 @@
+import { regulationSettings } from '@/types/interface';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import RNModal from 'react-native-modal';
 
 type Props = {
-  visible: boolean;
-  onClose: () => void;
-  item: any | null;
+  visible: string;
+  item: regulationSettings[];
 };
 
 const Popup: React.FC<Props> = ({ visible, onClose, item }) => {
