@@ -1,6 +1,8 @@
 import background from "@/assets/images/background.png";
 import SearchBar from '@/components/SearchBar';
 import { regulationSettings } from '@/types/interface';
+import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
+import { useCallback, useRef } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from 'react-native';
 
 type Props = {
@@ -8,9 +10,19 @@ type Props = {
 };
 
 export default function Hannah({ data }: Props) {
+  const ref = useRef<ScrollView>(null);
+  useScrollToTop(ref);
+
+  useFocusEffect(
+    useCallback(() => {
+      ref.current?.scrollTo({ y: 0, animated: false });
+    }, [])
+  );
+
+
   return (
     <ImageBackground source={background} resizeMode="cover" style={styles.background}>
-      <ScrollView>
+      <ScrollView ref={ref}>
         <SearchBar data={data} />
       </ScrollView>
     </ImageBackground>
