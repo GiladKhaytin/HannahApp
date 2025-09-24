@@ -1,12 +1,9 @@
-import Hannah from '@/components/Hannah';
-import disciplinaryRegulations from '@/data/traffic.json';
-import React from 'react';
-import { View } from 'react-native';
+import Hannah from "@/components/Hannah";
+import disciplinaryRegulations from "@/data/traffic.json";
+import React from "react";
 
 export default function Disciplinary() {
   return (
-    <View style={{ flex: 1 }}>
-      <Hannah data={disciplinaryRegulations} />
-    </View>
+    <Hannah  data={disciplinaryRegulations} />
   );
 }
