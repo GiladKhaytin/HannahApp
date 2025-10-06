@@ -16,7 +16,7 @@ const Popup: React.FC<Props> = ({ visible, onClose, item }) => {
         <View style={styles.modalContent}>
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.field}>{item.description}</Text>
-          {(item.symbol || item.symbol2) && (<Text style={styles.field}>סימול: {item.symbol} {item.symbol2}</Text>)}          
+          {(item.symbol || item.symbol2 || item.symbol3) && (<Text style={styles.field}>סימולים: {item.symbol} {item.symbol2} {item.symbol3}</Text>)}          
           <Text style={styles.field}>חומרת עבירה: {item.severity}</Text>
           <Text style={styles.field}>סוג: {item.type}</Text>
             {item.note && (<Text style={styles.note}>הערות: {item.note}</Text>)}
