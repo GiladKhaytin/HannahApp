@@ -18,6 +18,7 @@
     "android": {
       "icon": "./assets/images/icon.png",
       "edgeToEdgeEnabled": true,
+      "adaptiveIcon": null,
       "package": "HannahApp.com"
     },
     "web": {
