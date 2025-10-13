@@ -4,6 +4,6 @@ import React from "react";
 
 export default function Disciplinary() {
   return (
-    <Hannah  data={disciplinaryRegulations} />
+    <Hannah data={disciplinaryRegulations} />
   );
 }
