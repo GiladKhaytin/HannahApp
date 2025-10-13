@@ -1,20 +1,26 @@
 import Popup from '@/components/PopUp';
-import { regulationSettings } from '@/types/regulationSettings';
+import { regulationSettings } from '@/types/interface';
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type Props = {
   query: string;
   data: regulationSettings[];
+  selectedTopic?: string | null;
 };
 
-const Results: React.FC<Props> = ({ query, data }) => {
+const Results: React.FC<Props> = ({ query, data, selectedTopic }) => {
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
 
-  const filtered = data.filter((item) =>
-    item.title?.toLowerCase().includes(query.toLowerCase()) ||
-    item.description?.toLowerCase().includes(query.toLowerCase())
-  );
+  const filtered = data.filter(item => {
+    const matchesQuery =
+      item.title?.toLowerCase().includes(query.toLowerCase()) ||
+      item.description?.toLowerCase().includes(query.toLowerCase());
+
+    const matchesTopic = selectedTopic ? item.topic === selectedTopic : true;
+
+    return matchesQuery && matchesTopic;
+  });
 
   return (
     <>

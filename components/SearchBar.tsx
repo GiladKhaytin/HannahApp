@@ -1,3 +1,4 @@
+import Buttons from '@/components/Buttons';
 import Results from '@/components/Results';
 import { regulationSettings } from '@/types/interface';
 import { FontAwesome } from '@expo/vector-icons';
@@ -10,6 +11,7 @@ type Props = {
 
 export default function SearchBar({ data }: Props) {
   const [query, setQuery] = useState<string>('');
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
 
   return (
     <View style={styles.container}>
@@ -20,11 +22,17 @@ export default function SearchBar({ data }: Props) {
           placeholder="איזו תקנה בא לך למצוא?"
           placeholderTextColor="#999"
           value={query}
-          onChangeText={setQuery}
+          onChangeText={text => {
+            setQuery(text);
+            setSelectedTopic(null);
+          }}
         />
       </View>
+      <View style={styles.buttonsWrapper}>
+        <Buttons data={data} onSelectTopic={setSelectedTopic}/>
+      </View>
       <View style={styles.resultsWrapper}>
-        <Results query={query} data={data} />
+          <Results query={query} data={data} selectedTopic={selectedTopic}/> 
       </View>
     </View>
   );
@@ -61,5 +69,8 @@ const styles = StyleSheet.create({
   },
   resultsWrapper: {
     marginTop: 10,
+  },  
+  buttonsWrapper: {
+    marginTop: 20,
   },
 });
