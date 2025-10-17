@@ -1,10 +1,13 @@
 import background from "@/assets/images/background.png";
+import WelcomeBlock from "@/components/WelcomeBlock";
 import { ImageBackground, StyleSheet } from 'react-native';
 
 
 export default function Index() {
   return (
-    <ImageBackground source={background} resizeMode="cover" style={styles.background}></ImageBackground>
+    <ImageBackground source={background} resizeMode="cover" style={styles.background}>
+      <WelcomeBlock/>
+    </ImageBackground>
   );
 };
 
